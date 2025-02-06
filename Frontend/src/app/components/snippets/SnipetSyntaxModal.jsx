@@ -3,6 +3,7 @@ import CodeContent from "../ui/CodeContent";
 import ReactDOM from "react-dom";
 import { MdClose } from "react-icons/md";
 import CopySnippet from "../ui/CopySnippet";
+import { FiMaximize2 } from "react-icons/fi";
 
 const SnipetSyntaxModal = ({
   children,
@@ -50,9 +51,23 @@ const SnipetSyntaxModal = ({
           </div>,
           document.body
         )}
-      <CodeContent type="trigger" onClick={openModal}>
-        {children}
-      </CodeContent>
+      <div className="group relative">
+        <CodeContent type="trigger" onClick={openModal}>
+          {children}
+        </CodeContent>
+        <div
+          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            openModal();
+          }}
+        >
+          <FiMaximize2
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            size={18}
+          />
+        </div>
+      </div>
     </>
   );
 };

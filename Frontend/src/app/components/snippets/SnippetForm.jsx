@@ -261,7 +261,7 @@ const SnippetForm = ({ setSnippets, setMessage, closeModal, initialData }) => {
             darkMode ? "text-gray-300" : "text-gray-800"
           } font-bold text-xl`}
         >
-          {initialData ? "Modifier un Snippet" : "Ajouter un Snippet"}
+          {initialData ? "Update Snippet" : "Add Snippet"}
         </h2>
         <button
           onClick={closeModal}
