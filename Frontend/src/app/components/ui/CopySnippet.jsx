@@ -2,7 +2,7 @@ import { useTheme } from "@/app/context/ThemeContext";
 import React from "react";
 import { IoCheckmark, IoCopyOutline } from "react-icons/io5";
 
-const CopySnippet = ({ snippet, handleCopy, copiedSnippetId, className }) => {
+const CopySnippet = ({ snippet, handleCopy, copiedSnippetId }) => {
   const { darkMode } = useTheme();
 
   return (
