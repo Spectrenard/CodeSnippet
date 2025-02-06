@@ -23,7 +23,7 @@ const DeleteSnippetButton = ({ snippetId, onDelete }) => {
 
       if (response.ok) {
         onDelete(snippetId); // Appelle la fonction onDelete pour mettre à jour l'état parent
-        toast.success("Snippet supprimé avec succès !", {
+        toast.success("Snippet deleted successfully !", {
           style: {
             position: "bottom-left",
             backgroundColor: "#81C784", // Vert
@@ -31,7 +31,7 @@ const DeleteSnippetButton = ({ snippetId, onDelete }) => {
           },
         }); // Affiche la notification de succès avec une couleur verte
       } else {
-        toast.error("Erreur lors de la suppression du snippet.", {
+        toast.error("Error deleting snippet.", {
           style: {
             backgroundColor: "#f44336", // Rouge
             color: "white",
@@ -40,9 +40,7 @@ const DeleteSnippetButton = ({ snippetId, onDelete }) => {
       }
     } catch (error) {
       console.error("Erreur :", error);
-      toast.error(
-        "Une erreur s'est produite lors de la suppression du snippet."
-      ); // Notification d'erreur
+      toast.error("An error occurred while deleting the snippet."); // Notification d'erreur
     }
   };
 
@@ -64,7 +62,7 @@ const DeleteSnippetButton = ({ snippetId, onDelete }) => {
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         onConfirm={handleDelete}
-        message="Êtes-vous sûr de vouloir supprimer ce snippet ?"
+        message="Are you sure you want to delete this snippet ?"
       />
     </>
   );

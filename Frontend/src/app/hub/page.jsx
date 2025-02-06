@@ -258,60 +258,28 @@ const HubPage = () => {
               >
                 Sort by
               </h2>
-              <div className="relative">
-                <button
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className={`w-full custom-select p-2 border rounded-lg cursor-pointer flex justify-between items-center ${
-                    darkMode
-                      ? "bg-zinc-800 border-zinc-700 text-gray-300"
-                      : "bg-white border-gray-200"
-                  }`}
-                >
-                  <span
-                    className={`${
-                      darkMode ? "text-gray-400" : "text-gray-800"
-                    }`}
+              <div className="flex flex-col gap-2">
+                {sortOptions.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => setSortBy(option.value)}
+                    className={`p-2 rounded-lg transition-all duration-200 text-left
+                      ${
+                        darkMode
+                          ? "hover:bg-zinc-700 focus:bg-zinc-600 text-gray-300"
+                          : "hover:bg-gray-100 focus:bg-blue-50 text-gray-800"
+                      }
+                      ${
+                        sortBy === option.value
+                          ? darkMode
+                            ? "bg-zinc-600 font-medium"
+                            : "bg-blue-50 font-medium"
+                          : ""
+                      }`}
                   >
-                    {
-                      sortOptions.find((option) => option.value === sortBy)
-                        ?.label
-                    }
-                  </span>
-                  <span className="ml-2">▼</span>
-                </button>
-
-                {isDropdownOpen && (
-                  <div
-                    className={`absolute z-50 w-full mt-1 rounded-lg shadow-lg border ${
-                      darkMode
-                        ? "bg-zinc-800 border-zinc-700"
-                        : "bg-white border-gray-200"
-                    }`}
-                  >
-                    {sortOptions.map((option) => (
-                      <div
-                        key={option.value}
-                        onClick={() => {
-                          setSortBy(option.value);
-                          setIsDropdownOpen(false);
-                        }}
-                        className={`px-4 py-2 cursor-pointer ${
-                          darkMode
-                            ? "hover:bg-zinc-700 text-gray-300"
-                            : "hover:bg-gray-100"
-                        } ${
-                          sortBy === option.value
-                            ? darkMode
-                              ? "bg-zinc-600"
-                              : "bg-blue-50"
-                            : ""
-                        }`}
-                      >
-                        {option.label}
-                      </div>
-                    ))}
-                  </div>
-                )}
+                    {option.label}
+                  </button>
+                ))}
               </div>
             </div>
           </div>

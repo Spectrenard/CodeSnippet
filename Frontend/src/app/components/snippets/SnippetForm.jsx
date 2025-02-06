@@ -193,7 +193,7 @@ const SnippetForm = ({ setSnippets, setMessage, closeModal, initialData }) => {
 
         if (response.ok) {
           const updatedSnippet = await response.json();
-          console.log("Snippet créé/modifié:", updatedSnippet);
+          console.log("Snippet created/updated:", updatedSnippet);
 
           if (initialData) {
             setSnippets((prevSnippets) =>
@@ -361,7 +361,7 @@ const SnippetForm = ({ setSnippets, setMessage, closeModal, initialData }) => {
             : "w-full p-2 border border-gray-300 rounded mb-4 bg-zinc-900 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-black/20"
         }`}
       >
-        {initialData ? "Modifier Snippet" : "Ajouter Snippet"}
+        {initialData ? "Update Snippet" : "Add Snippet"}
       </button>
     </div>
   );
