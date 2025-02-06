@@ -8,6 +8,7 @@ import {
 } from "react-icons/bi";
 import SnipetSyntaxModal from "../snippets/SnipetSyntaxModal";
 import CopySnippet from "../ui/CopySnippet";
+import { FiMaximize2 } from "react-icons/fi";
 
 const SnippetCard = ({
   snippet,
@@ -157,13 +158,33 @@ const SnippetCard = ({
       </div>
 
       <div className="mt-4 relative">
-        <SnipetSyntaxModal
-          snippet={snippet}
-          copiedSnippetId={copiedSnippetId}
-          handleCopy={onCopy}
-        >
-          {snippet.description}
-        </SnipetSyntaxModal>
+        <div className="group relative">
+          <SnipetSyntaxModal
+            snippet={snippet}
+            copiedSnippetId={copiedSnippetId}
+            handleCopy={onCopy}
+            ref={(modalRef) => {
+              // Cette référence nous permet d'accéder à la fonction openModal
+              window.modalRef = modalRef;
+            }}
+          >
+            {snippet.description}
+          </SnipetSyntaxModal>
+          <div
+            className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (window.modalRef && window.modalRef.openModal) {
+                window.modalRef.openModal();
+              }
+            }}
+          >
+            <FiMaximize2
+              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              size={18}
+            />
+          </div>
+        </div>
       </div>
 
       <div className="mt-4 flex justify-between items-center">
