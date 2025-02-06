@@ -4,6 +4,7 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { IoCopyOutline, IoCheckmark, IoPencil } from "react-icons/io5"; // Ajout de IoPencil
 import DeleteSnippetButton from "./DeleteSnippetButton";
 import { useTheme } from "@/app/context/ThemeContext";
+import SnipetSyntaxModal from "./SnipetSyntaxModal";
 
 // Styles pour les catégories
 const categoryStyles = {
@@ -141,13 +142,13 @@ const SnippetList = ({ snippets, onEdit, onDelete }) => {
                     )}
                   </div>
                 </div>
-                <SyntaxHighlighter
-                  className="max-h-36 rounded-lg flex-grow"
-                  language="javascript"
-                  style={vscDarkPlus}
+                <SnipetSyntaxModal
+                  copiedSnippetId={copiedSnippetId}
+                  handleCopy={handleCopy}
+                  snippet={snippet}
                 >
                   {snippet.description}
-                </SyntaxHighlighter>
+                </SnipetSyntaxModal>
                 <div className="flex gap-2 mt-4 ">
                   <button
                     onClick={() => handleCopy(snippet.description, snippet.id)}

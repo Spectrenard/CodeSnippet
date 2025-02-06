@@ -4,6 +4,8 @@ import { Strategy as GitHubStrategy } from "passport-github2";
 import prisma from "../prisma/index.js";
 import { createJWT } from "../modules/auth.js";
 import cloudinary from "../config/cloudinary.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
