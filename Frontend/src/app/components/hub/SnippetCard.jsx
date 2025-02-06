@@ -1,14 +1,13 @@
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { IoCopyOutline, IoCheckmark } from "react-icons/io5";
+import { useTheme } from "@/app/context/ThemeContext";
+import { useEffect, useState } from "react";
 import {
-  BiUpvote,
-  BiSolidUpvote,
   BiBookmark,
   BiSolidBookmark,
+  BiSolidUpvote,
+  BiUpvote,
 } from "react-icons/bi";
-import { useState, useEffect } from "react";
-import { useTheme } from "@/app/context/ThemeContext";
+import SnipetSyntaxModal from "../snippets/SnipetSyntaxModal";
+import CopySnippet from "../ui/CopySnippet";
 
 const SnippetCard = ({
   snippet,
@@ -158,20 +157,13 @@ const SnippetCard = ({
       </div>
 
       <div className="mt-4 relative">
-        <SyntaxHighlighter
-          language="javascript"
-          className="rounded-lg flex-grow overflow-auto"
-          style={vscDarkPlus}
-          customStyle={{
-            borderRadius: "0.5rem",
-            padding: "1rem",
-            fontSize: "0.9rem",
-            maxHeight: "12rem",
-            overflow: "auto",
-          }}
+        <SnipetSyntaxModal
+          snippet={snippet}
+          copiedSnippetId={copiedSnippetId}
+          handleCopy={onCopy}
         >
           {snippet.description}
-        </SyntaxHighlighter>
+        </SnipetSyntaxModal>
       </div>
 
       <div className="mt-4 flex justify-between items-center">
@@ -249,24 +241,11 @@ const SnippetCard = ({
             </div>
           </button>
         </div>
-        <button
-          onClick={() => onCopy(snippet.description, snippet.id)}
-          className={`${
-            darkMode ? "text-gray-400 border-gray-600" : "text-gray-800"
-          } flex items-center space-x-2 transition px-4 py-2 rounded-full border border-gray-200 hover:border-indigo-500`}
-        >
-          {copiedSnippetId === snippet.id ? (
-            <>
-              <IoCheckmark className="text-xl text-green-600" />
-              <span>Copied</span>
-            </>
-          ) : (
-            <>
-              <IoCopyOutline className="text-xl" />
-              <span>Copy</span>
-            </>
-          )}
-        </button>
+        <CopySnippet
+          snippet={snippet}
+          copiedSnippetId={copiedSnippetId}
+          handleCopy={onCopy}
+        />
       </div>
     </div>
   );
