@@ -6,6 +6,7 @@ import SearchBar from "../components/ui/SearchBar";
 import SnippetCard from "../components/hub/SnippetCard";
 import LoadingHub from "../components/ui/Loading/LoadingHub";
 import { useTheme } from "../context/ThemeContext";
+import { categoryStyles } from "../../utils/categoryStyles";
 
 const BookmarksPage = () => {
   const { darkMode } = useTheme();
@@ -15,20 +16,6 @@ const BookmarksPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("recent");
   const [copiedSnippetId, setCopiedSnippetId] = useState(null);
-
-  const categoryStyles = {
-    JavaScript: "bg-yellow-200 text-yellow-800",
-    Typescript: "bg-blue-300 text-blue-900",
-    React: "bg-purple-200 text-purple-800",
-    Angular: "bg-red-200 text-red-800",
-    Vue: "bg-green-200 text-green-800",
-    Python: "bg-blue-200 text-blue-800",
-    NodeJS: "bg-green-300 text-green-900",
-    Swift: "bg-orange-200 text-orange-800",
-    Java: "bg-red-200 text-red-800",
-    NestJS: "bg-indigo-200 text-indigo-800",
-    C: "bg-gray-300 text-gray-900",
-  };
 
   const sortOptions = [
     { value: "recent", label: "Most recent" },

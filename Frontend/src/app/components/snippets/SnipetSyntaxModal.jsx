@@ -52,8 +52,8 @@ const SnipetSyntaxModal = forwardRef(
             </div>,
             document.body
           )}
-        <div className="group relative">
-          <CodeContent type="trigger" onClick={openModal}>
+        <div className="group relative flex-1 flex flex-col h-full">
+          <CodeContent type="trigger" onClick={openModal} className="flex-1">
             {children}
           </CodeContent>
           <div

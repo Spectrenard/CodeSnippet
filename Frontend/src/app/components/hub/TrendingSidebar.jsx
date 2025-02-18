@@ -1,6 +1,7 @@
 import { useTheme } from "../../context/ThemeContext";
+import { categoryStyles } from "../../../utils/categoryStyles";
 
-const TrendingSidebar = ({ categoryStyles }) => {
+const TrendingSidebar = () => {
   const { darkMode } = useTheme();
 
   return (
@@ -27,7 +28,7 @@ const TrendingSidebar = ({ categoryStyles }) => {
           .map((cat) => (
             <div key={cat} className="flex items-center justify-between">
               <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${categoryStyles[cat]}`}
+                className={`px-3 py-1  rounded-full text-sm font-bold ${categoryStyles[cat]}`}
               >
                 {cat}
               </span>
