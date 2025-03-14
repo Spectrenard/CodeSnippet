@@ -9,6 +9,7 @@ import authRoutes from "./routes/authRoutes.js";
 import hubRoutes from "./routes/hubRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { authenticateToken } from "./modules/authMiddleware.js";
+import prisma from "./prisma/index.js";
 dotenv.config();
 const app = express();
 
@@ -62,7 +63,16 @@ app.use(logger);
 app.post("/user", createNewUser);
 app.post("/signin", signin);
 app.use("/auth", authRoutes);
-app.get("/ping", (req, res) => res.status(200).send("OK"));
+app.get("/ping", async (req, res) => {
+  try {
+    // Effectuer une requête simple pour garder la connexion active
+    await prisma.$queryRaw`SELECT 1`;
+    res.status(200).send("pong");
+  } catch (error) {
+    console.error("Erreur lors du ping:", error);
+    res.status(500).send("Erreur serveur");
+  }
+});
 
 // Middleware d'authentification global pour toutes les routes suivantes
 app.use(authenticateToken);
